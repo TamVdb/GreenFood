@@ -1,0 +1,925 @@
+/*=================================================================================================
+Global
+==================================================================================================*/
+/* Cool text */
+@font-face {
+   font-family: "Lobster";
+   src: url("../fonts/Lobster/Lobster-Regular.ttf");
+}
+
+@font-face {
+   font-family: "Josefin";
+   src: url("../fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf");
+}
+
+/* Titles */
+@font-face {
+   font-family: "Montserrat";
+   src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+/* Text */
+@font-face {
+   font-family: "Catamaran";
+   src: url("../fonts/Catamaran/Catamaran-VariableFont_wght.ttf");
+}
+
+body {
+   font-size: 1rem;
+   font-weight: 400;
+   font-family: "Catamaran";
+   line-height: 1.6;
+   width: 100vw;
+   height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+   font-family: "Montserrat";
+   line-height: 1;
+}
+
+h1 {
+   font-size: 2.5rem;
+   font-weight: 800;
+}
+
+.hidden {
+   display: none !important;
+}
+
+ul {
+   list-style: none;
+}
+
+main {
+   width: 100%;
+}
+
+/*=================================================================================================
+Header
+==================================================================================================*/
+header {
+   width: 100%;
+   background-color: #122c34;
+}
+
+nav#navbar {
+   display: flex;
+   width: 90%;
+   max-width: 1280px;
+   align-items: center;
+   margin: auto;
+   flex-wrap: wrap;
+}
+
+.logo {
+   display: flex;
+   align-items: center;
+   flex: 1;
+   order: 1;
+}
+
+.logo img {
+   width: 60%;
+}
+
+#nav {
+   display: none;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+   order: 4;
+   padding-bottom: 1rem;
+}
+
+#nav.open {
+   display: flex;
+}
+
+#nav ul {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-between;
+   gap: 20px;
+   padding: 15px;
+}
+
+#nav ul li {
+   position: relative;
+}
+
+#nav li.active::after {
+   position: absolute;
+   content: "";
+   height: 3px;
+   width: 100%;
+   background-color: #69dc9e;
+   left: 0;
+   bottom: -5px;
+   border-top-left-radius: 3px;
+   border-top-right-radius: 3px;
+   animation: appear 0.3s linear;
+}
+
+@keyframes appear {
+   from {
+      width: 0;
+   }
+   to {
+      width: 100%;
+   }
+}
+
+nav .animation {
+   position: absolute;
+   height: 100%;
+   top: 0;
+   z-index: 0;
+   background: #69dc9e;
+}
+
+#nav a {
+   text-decoration: none;
+   font-family: "Montserrat";
+   font-weight: 500;
+   font-size: 0.95rem;
+   color: white;
+}
+
+#nav a:hover,
+#nav a:active {
+   color: #aceec7;
+}
+
+#nav a.active {
+   color: #aceec7;
+}
+
+#menu-toggle {
+   display: flex;
+   flex-direction: column;
+   cursor: pointer;
+   flex: 1;
+   justify-content: center;
+   align-items: flex-end;
+   order: 3;
+}
+
+#menu-toggle .bar {
+   width: 25px;
+   height: 3px;
+   border-radius: 5px;
+   background-color: white;
+   margin: 4px 0;
+   transition: transform 0.4s, opacity 0.4s;
+}
+
+#menu-toggle.open .bar:nth-child(1) {
+   transform: translateY(11px) rotate(45deg);
+}
+
+#menu-toggle.open .bar:nth-child(2) {
+   opacity: 0;
+}
+
+#menu-toggle.open .bar:nth-child(3) {
+   transform: translateY(-11px) rotate(-45deg);
+}
+
+.cta {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex: 1;
+   order: 2;
+}
+
+@media only screen and (min-width: 480px) {
+   .logo img {
+      width: 50%;
+   }
+}
+@media only screen and (min-width: 768px) {
+   .logo img {
+      width: 40%;
+   }
+}
+@media only screen and (min-width: 1024px) {
+   nav#navbar {
+      flex-wrap: nowrap;
+   }
+
+   #menu-toggle {
+      display: none;
+   }
+
+   .logo {
+      flex: 1;
+      justify-content: flex-start;
+   }
+
+   .logo img {
+      width: 60%;
+   }
+
+   #nav {
+      display: flex;
+      flex: 4;
+      left: 0;
+      top: 0;
+      order: 2;
+      padding-bottom: 0;
+   }
+
+   #nav ul {
+      flex-direction: row;
+   }
+
+   #nav a {
+      font-size: 1rem;
+   }
+
+   .cta {
+      flex: 1;
+      order: 3;
+      justify-content: flex-end;
+   }
+}
+
+/*=================================================================================================
+Progress Bar
+==================================================================================================*/
+section.multisteps {
+   width: 90%;
+   margin: auto;
+   display: flex;
+   justify-content: center;
+}
+
+.multistep-container {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   justify-content: center;
+   max-width: 1280px;
+   padding: 1.8rem 0;
+}
+
+.multistep-steps {
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+}
+
+.multistep-step {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 25%;
+   z-index: 2;
+}
+
+.multistep-step.active .multistep_step-number {
+   background-color: #69dc9e;
+   transition-delay: 100ms;
+   transition: all 200ms ease;
+}
+
+.multistep_step-number {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: "Lobster";
+   color: #ffffff;
+   background-color: #aceec7;
+   font-size: 1.3rem;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   transition: all 200ms ease;
+   transition-delay: 0ms;
+}
+
+.multistep-step.active .multistep_step-name {
+   color: #122c34;
+   font-weight: 500;
+   font-family: "Montserrat";
+   text-align: center;
+   display: none;
+}
+
+.multistep_step-name {
+   color: #69dc9e;
+   font-family: "Montserrat";
+   text-align: center;
+   display: none;
+}
+
+.multistep-progress-bar {
+   position: absolute;
+   width: 100%;
+   background-color: #aceec7;
+   z-index: 0;
+   top: calc(0% + 19px);
+   height: 2px;
+}
+
+.multistep-progress-bar .indicator {
+   position: absolute;
+   height: 100%;
+   width: 25%;
+   background: #69dc9e;
+   transition: all 300ms ease;
+}
+
+/* Media Queries - Progress Bar
+------------------------------------ */
+@media only screen and (min-width: 768px) {
+   .multistep-step.active .multistep_step-name,
+   .multistep_step-name {
+      display: block;
+      font-size: 0.9em;
+      line-height: 1.8;
+   }
+
+   .multistep_step-number {
+      font-size: 30px;
+   }
+
+   .multistep-progress-bar {
+      top: calc(0% + 18px);
+      height: 2px;
+   }
+}
+
+/*=================================================================================================
+SECTION Order - Steps
+==================================================================================================*/
+section.stepContent {
+   background-color: #f5f5f6;
+}
+
+/* Section Content - Show/Hide en fonction des Steps active */
+.stepContent {
+   display: none;
+   animation: animate 0.5s;
+   transition: all 200ms ease;
+   padding: 3rem 0;
+}
+
+.active-step {
+   display: block;
+}
+
+.wrap {
+   display: flex;
+   justify-content: center;
+   padding: 2.5rem 0;
+   max-width: 1280px;
+   margin: auto;
+   width: 90%;
+}
+
+/*=================================================================================================
+Step 1 - Tabs
+==================================================================================================*/
+.tabs-container {
+   display: flex;
+   align-items: stretch;
+   background-color: #ffffff;
+   border-radius: 2rem;
+   box-shadow: 0 3px 4px 0 rgba(18, 44, 52, 0.2);
+}
+
+.tablink {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #ffffff;
+   padding: 0.8rem 1rem;
+   line-height: 1;
+   border-radius: 2rem;
+   min-width: 100px;
+   cursor: pointer;
+   text-align: center;
+   transition: all 300ms ease;
+}
+
+.tablink:hover {
+   background-color: #69dc9e;
+}
+
+.tablink.active {
+   background-color: #69dc9e;
+}
+
+/* Media Queries - Step 1 - Tabs
+------------------------------------ */
+@media only screen and (min-width: 480px) {
+   .tablink {
+      min-width: 150px;
+   }
+}
+
+@media only screen and (min-width: 1024px) {
+   .tablink {
+      min-width: 200px;
+   }
+}
+
+/*=================================================================================================
+Step 1 - Choix Recettes
+==================================================================================================*/
+.tabcontent {
+   padding: 2rem 1rem 2.5rem 1rem;
+   background-color: white;
+   border-radius: 1.5rem;
+   width: 90%;
+   max-width: 1280px;
+   margin: auto;
+}
+
+#recipes {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+   justify-content: space-between;
+   gap: 0.7rem;
+}
+
+.recipe {
+   background-color: #ffffff;
+   display: flex;
+   flex-direction: column;
+   border-radius: 1.1rem;
+   box-shadow: 0px 0px 5px 0px rgba(18, 44, 52, 0.1);
+}
+
+.recipe_block {
+   display: flex;
+   flex-direction: column;
+   cursor: pointer;
+   transition: all 200ms ease;
+}
+
+.tab_title_wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+}
+
+.recipe img.recipe_img {
+   max-width: 100%;
+   border-radius: 1.1rem;
+   border-top-right-radius: 1.1rem;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+   border-top-left-radius: 1.1rem;
+}
+
+.recipe_infos {
+   display: flex;
+   flex-wrap: nowrap;
+   flex-direction: column;
+   justify-content: space-between;
+   row-gap: 0.6rem;
+   padding: 0.8rem;
+   flex-grow: 1;
+}
+
+.recipe_infos .tags {
+   display: flex;
+   background-color: #ffffff;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+}
+
+.recipe_infos .tag {
+   display: flex;
+   border-radius: 0.3rem;
+   padding: 0.3rem 0.5rem;
+   max-width: 70px;
+   font-size: 0.9rem;
+   font-weight: 600;
+   line-height: 1;
+}
+
+.veggie {
+   background-color: #d4f7e0;
+   color: #1bae68;
+}
+
+.express {
+   background-color: #fef1c7;
+   color: #f79623;
+}
+
+.gluten {
+   background-color: #f3e8e1;
+   color: #b97057;
+}
+
+.lactose {
+   background-color: #e3ecf7;
+   color: #6393ce;
+}
+
+.healthy {
+   background-color: #ecebfc;
+   color: #856ee4;
+}
+
+.recipe_infos .description {
+   font-family: "Montserrat";
+   color: #122c34;
+   font-weight: 600;
+   font-size: 0.9rem;
+   line-height: 1.3;
+}
+
+@media only screen and (min-width: 480px) {
+   .recipe_block {
+      width: calc(50% - 0.7rem);
+   }
+}
+
+@media only screen and (min-width: 1024px) {
+   .recipe_block {
+      width: calc(25% - 0.7rem);
+   }
+}
+
+/*=================================================================================================
+Step 1 - Overlay Recipe Description
+==================================================================================================*/
+#background {
+   background-color: rgba(18, 44, 52, 0.5);
+   z-index: 50;
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+}
+
+#modal {
+   display: flex;
+   background-color: white;
+   border-radius: 1.5rem;
+   padding: 1rem;
+   flex-direction: column;
+   position: fixed;
+   width: 90vw;
+   max-width: 1000px;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   box-shadow: 0 8px 32px rgba(18, 44, 52, 0.1);
+   z-index: 100;
+}
+
+.close {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-self: flex-end;
+   width: 2.5rem;
+   height: 2.5rem;
+   margin-bottom: 1rem;
+   border-radius: 50%;
+   background-color: whitesmoke;
+   padding: 0.5rem;
+   line-height: 1;
+   font-weight: bold;
+   font-family: "Montserrat";
+   cursor: pointer;
+   user-select: none;
+}
+
+.modal-container {
+   display: flex;
+   flex-direction: column;
+}
+
+.modal-container .modal-img {
+   display: flex;
+   flex-direction: column;
+}
+
+.modal-img img {
+   border-top-left-radius: 1.1rem;
+   border-top-right-radius: 1.1rem;
+}
+
+.modal-img .modal-tags {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+   transform: translateY(-2rem); /* Keep the space */
+   padding-left: 1rem;
+}
+
+.modal-tags .tag {
+   display: flex;
+   border-radius: 0.3rem;
+   padding: 0.3rem 0.5rem;
+   max-width: 120px;
+   font-size: 1rem;
+   font-weight: 600;
+   line-height: 1;
+}
+
+.modal-container .modal-recipe-container {
+   display: flex;
+   flex-direction: column;
+   padding: 0 1rem;
+   gap: 1rem;
+}
+
+.modal-recipe-container .modal-recipe-title {
+   font-family: "Montserrat";
+   color: #122c34;
+   font-weight: 700;
+   font-size: 1.2rem;
+   line-height: 1.3;
+}
+
+.modal-recipe-container .ingredients {
+   display: flex;
+   flex-wrap: wrap;
+   row-gap: 0.5rem; /* Espace entre les rangées */
+}
+
+.ingredients .ingredient {
+   display: flex;
+   align-items: center;
+   width: 50%;
+}
+
+.ingredient .ingredient-img {
+   display: flex;
+   height: 70px;
+   flex-basis: 70px;
+   align-items: center;
+}
+
+.ingredient-img img {
+   width: 90%;
+   border-radius: 50%;
+}
+
+.ingredient .ingredient-name {
+   font-size: 0.9rem;
+   font-weight: 600;
+}
+
+@media only screen and (min-width: 480px) {
+   .ingredients .ingredient {
+      width: 33.33%;
+   }
+}
+
+@media only screen and (min-width: 768px) {
+   #modal {
+      padding: 2rem;
+   }
+   .modal-container {
+      flex-direction: row;
+   }
+   .modal-img,
+   .modal-recipe-container {
+      width: 50%;
+   }
+   .modal-img img {
+      border-radius: 1.1rem;
+   }
+   .ingredients .ingredient {
+      width: 50%;
+   }
+}
+
+/*=================================================================================================
+Footer
+==================================================================================================*/
+footer {
+   width: 100%;
+   background-color: #122c34;
+   padding: 2rem 0 0 0;
+}
+
+footer .row {
+   display: flex;
+   flex-direction: column;
+   width: 90%;
+   max-width: 1280px;
+   margin: auto;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   padding: 1rem 0 3rem 0;
+   gap: 25px;
+}
+
+footer .row .col {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+footer .row .col .title {
+   color: #d4f7e0;
+   font-size: 1.3rem;
+   font-family: "Josefin";
+   font-weight: 500;
+   padding-bottom: 0.5rem;
+}
+
+footer .row .col .infos ul li a {
+   color: #dcdcdc;
+   font-size: 1rem;
+   font-weight: 300;
+   text-decoration: none;
+   transition: all 200ms ease;
+}
+
+footer .row .col .infos ul li a:hover {
+   color: white;
+   transition: all 200ms ease;
+}
+
+footer .row .col .infos {
+   margin: auto;
+}
+
+.button {
+   display: flex;
+   margin-top: 0.5rem;
+   border-radius: 5px;
+   background-color: #122c34;
+   padding: 0.4rem 0.8rem;
+   border: 1px solid #69dc9e;
+   color: #69dc9e;
+   font-family: "Montserrat";
+   font-weight: 600;
+   font-size: 0.9rem;
+   width: fit-content;
+   cursor: pointer;
+   transition: all 300ms ease;
+}
+
+.button:hover {
+   background-color: #69dc9e;
+   color: #122c34;
+   transition: all 300ms ease;
+}
+
+footer .socials {
+   display: flex;
+   width: 90%;
+   margin: auto;
+   justify-content: center;
+   gap: 15px;
+   position: relative;
+}
+
+footer .socials::before {
+   border-top: 1px solid #edfcf3;
+   content: "";
+   position: absolute;
+   top: 50%;
+   width: 20%;
+   left: 0;
+}
+
+footer .socials::after {
+   border-top: 1px solid #edfcf3;
+   content: "";
+   position: absolute;
+   top: 50%;
+   width: 20%;
+   right: 0;
+}
+
+footer .socials .social {
+   display: flex;
+   padding: 0.75rem 0;
+}
+
+footer .logo {
+   display: flex;
+   flex-direction: column;
+   width: 90%;
+   margin: auto;
+   align-items: center;
+   justify-content: center;
+   margin-top: 2rem;
+   line-height: 1;
+}
+
+footer .logo .logo-title {
+   font-family: "Josefin";
+   color: #69dc9e;
+   font-weight: 700;
+   font-size: 2rem;
+}
+
+footer .logo .baseline {
+   color: #edfcf3;
+}
+
+footer .legal {
+   display: flex;
+   width: 90%;
+   margin: auto;
+   justify-content: center;
+   margin-top: 1.8rem;
+}
+
+footer .legal ul {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+footer .legal ul li a {
+   padding: 0.3rem 1rem;
+   color: white;
+   text-decoration: underline;
+   font-weight: 500;
+}
+
+footer .legal ul > li:not(:last-child) a::after {
+   color: #69dc9e;
+   content: "|";
+   display: inline-flex;
+   font-size: 1rem;
+   position: relative;
+   right: -1rem;
+   font-weight: 300;
+}
+
+footer .copyrights {
+   display: flex;
+   width: 90%;
+   margin: auto;
+   justify-content: center;
+   position: relative;
+   border-top: 1px dotted #254954;
+   margin-top: 1.5rem;
+}
+
+footer .copyrights p {
+   color: #989898;
+   padding: 0.5rem 0;
+}
+
+footer .copyrights p a {
+   color: #69dc9e;
+   text-decoration: none;
+}
+
+footer .copyrights i {
+   color: #aceec7;
+}
+
+@media only screen and (min-width: 480px) {
+   footer .socials {
+      gap: 20px;
+   }
+   footer .socials::before,
+   footer .socials::after {
+      width: 33%;
+   }
+}
+
+@media only screen and (min-width: 768px) {
+   footer .row {
+      flex-direction: row;
+      align-items: flex-start;
+   }
+
+   footer .row .col {
+      width: 50%;
+   }
+}
+
+@media only screen and (min-width: 1024px) {
+   footer .row {
+      text-align: left;
+   }
+
+   footer .row .col .infos {
+      margin: 0;
+   }
+
+   footer .socials {
+      gap: 30px;
+   }
+}
