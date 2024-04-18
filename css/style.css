@@ -409,6 +409,7 @@ Step 1 - Tabs
    cursor: pointer;
    text-align: center;
    transition: all 300ms ease;
+   font-family: "Josefin";
 }
 
 .tablink:hover {
